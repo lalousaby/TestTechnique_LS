@@ -1,0 +1,116 @@
+body{
+    font-family: "Lato", sans-serif;
+    font-weight: 400;
+    font-size: 17px;
+}
+
+h3{
+    font-weight: 900;
+    font-size: 20px;
+}
+
+.date{
+    font-size: 11px;
+}
+
+.dateContainer{
+    display: flex;
+    align-items: center;
+}
+
+.card{
+    background-color: #F2F2F2;
+    margin: 8px;
+    padding: 5px;
+    border-radius: 10px;
+    width: 360px;
+    height: 133px;
+    padding-left: 22px;
+}
+
+#rectangleTitle{
+    position: absolute;
+    width: 127px;
+    height: 14px;
+    background-color: #FED510;
+    top: 65px;
+    left: 58px;
+}
+
+h1{
+    position: absolute;
+    top: 29px;
+    left: 58px;
+    font-family: "Orelega One", serif;
+    font-size: 28px;
+    font-weight: 400;
+    line-height: 30.53px;
+    letter-spacing: 0.36px;
+}
+
+#tableTeachers{
+    position: absolute;
+    top: 120px;
+    left: 58px;
+}
+
+#tableStudents{
+    position: absolute;
+    top: 120px;
+    left: 497px;
+    
+}
+
+.columns{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.studentCards{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.material-symbols-outlined {
+  font-variation-settings:
+  'FILL' 0,
+  'wght' 400,
+  'GRAD' 0,
+  'opsz' 24;
+  font-size: 11px;
+  padding: 2px;
+}
+
+.tag{
+    display: grid;
+    grid-template-columns: repeat(2, 70%);
+}
+
+.center{
+    text-align: center;
+    font-size: 11px;
+}
+
+.textTag{
+    border-radius: 10px;
+    width: 91px;
+    height: 20px;
+    color: #FFFFFF;
+    font-size: 11px;
+}
+
+.red-background{
+    background-color: #E9131F;
+}
+
+.blue-background{
+    background-color: #1D79CD;
+}
+
+.yellow-background{
+    background-color: #C7B514;
+}
+
+.green-background{
+    background-color: #18A874;
+}
