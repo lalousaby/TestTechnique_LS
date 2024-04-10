@@ -5,6 +5,8 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { NgFor } from '@angular/common';
 import { CommonModule } from '@angular/common';
 import {MatIconModule} from '@angular/material/icon';
+import { style } from '@angular/animations';
+import { MatCardModule } from '@angular/material/card';
 
 interface Characters {
   id: number;
@@ -17,6 +19,10 @@ interface Characters {
   isTeacher: boolean;
 }
 
+interface AssignmentColorMap {
+  [assignment: string]: string; 
+}
+
 function parseArrivalDate(dateString: string): Date {
   const [day, monthString, year] = dateString.split('/');
   const month = parseInt(monthString) - 1;
@@ -26,7 +32,7 @@ function parseArrivalDate(dateString: string): Date {
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, FlexLayoutModule, CommonModule, NgFor, HttpClientModule, MatIconModule],
+  imports: [RouterOutlet, FlexLayoutModule, CommonModule, NgFor, HttpClientModule, MatIconModule, MatCardModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
@@ -41,6 +47,11 @@ export class AppComponent implements OnInit{
   studentsSlytherin: Characters[] = [];
   studentsAlphabeticalOrderedGryffindor: Characters[] = [];
   studentsAlphabeticalOrderedSlytherin: Characters[] = [];
+  teachersT: Characters[] = [];
+  teachersC: Characters[] = [];
+  teachersP: Characters[] = [];
+  teachersH: Characters[] = [];
+  studentsYear: Characters[] = [];
 
   constructor(private http: HttpClient) {}
 
@@ -54,20 +65,55 @@ export class AppComponent implements OnInit{
         const timeB = dateB.getTime();
         return timeA - timeB;});
       this.students = this.characters.filter((character) => !character.isTeacher);
-      this.studentsGryffindor = this.students.filter((student) => student.house === 'Gryffindor')
-      this.studentsSlytherin = this.students.filter((student) => student.house === 'Slytherin')
+      this.studentsGryffindor = this.students.filter((student) => student.house === 'Gryffindor');
+      this.studentsSlytherin = this.students.filter((student) => student.house === 'Slytherin');
       this.studentsAlphabeticalOrderedGryffindor = this.studentsGryffindor.sort((a, b) => a.firstName.localeCompare(b.firstName));
       this.studentsAlphabeticalOrderedSlytherin = this.studentsSlytherin.sort((a, b) => a.firstName.localeCompare(b.firstName));
+      this.teachersT = this.teachersOrdered.filter((teacher) => teacher.assignment === 'Transfiguration');
+      this.teachersC = this.teachersOrdered.filter((teacher) => teacher.assignment === 'Charms');
+      this.teachersP = this.teachersOrdered.filter((teacher) => teacher.assignment === 'Potion');
+      this.teachersH = this.teachersOrdered.filter((teacher) => teacher.assignment === 'Herbology');
     });
-  }  
+  }
 
- /* teachersTag = [
-    { assignment: 'Transfiguration', colorClass: 'red-background' },
-    { assignment: 'Charms', colorClass: 'blue-background' },
-    { assignment: 'Potion', colorClass: 'green-background' },
-    { assignment: 'Herbology', colorClass: 'yellow-background' },
-  ];*/
+  chosenDate = new Date(1991, 10, 12)
 
+  calculateYear(student: Characters): string {
+    try {
+      const arrivalDate = new Date(student.arrivalDate);
+      const timeDifference = this.chosenDate.getTime() - arrivalDate.getTime();
+  
+      const years = Math.floor(timeDifference / (365 * 24 * 60 * 60 * 1000));
+      switch (years){
+        case 0:
+          return 'First year'
+        case 1: 
+          return 'Second year'
+        case 2: 
+          return 'Third year'
+      }
+  
+      return `${years}`;
+    } catch (error) {
+      console.error("Error calculating time here:", error);
+      return "Invalid arrival date format";
+    }
+  }
+
+  getAssignmentColor(assignment: Characters[]): string {
+    switch (assignment) {
+      case this.teachersT:
+        return '#E9131F';
+      case this.teachersC:
+        return '#1D79CD';
+      case this.teachersP:
+        return '#18A874';
+      case this.teachersH:
+        return '#C7B514';
+      default:
+        return 'black';
+    }
+  }
 }
 
 
