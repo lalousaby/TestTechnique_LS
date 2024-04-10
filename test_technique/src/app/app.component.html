@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orelega+One&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Orelega+One&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+  <title>Test Technique</title>
+</head>
+<body>
+  <div id="rectangleTitle"></div>
+  <h1>{{title}}</h1>
+
+  <div fxLayout="row" fxLayout.xs="column">
+    <div id="tableTeachers" fxFlex="30">
+      <h3>Teachers</h3>
+      <div class="card cardTeachers" *ngFor="let teacher of teachersOrdered">
+        <div class="tag">
+          <div>
+            <p class="textCard"><strong>{{ teacher.firstName }} {{ teacher.lastName }} </strong><br> {{ teacher.description }}</p>
+            <div class="dateContainer">   
+              <span class="material-symbols-outlined">calendar_month</span>    
+              <p class="date">{{ teacher.arrivalDate }}</p>
+            </div>
+          </div>
+          <div class="center">
+            <p class="textTag" [style.background-color]="'black'"> {{ teacher.assignment }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div fxFlex="70" class="studentCards">  
+      <div id="tableStudents">
+        <h3>Students</h3>
+        <div class="columns">
+          <div class="card" *ngFor="let student of studentsAlphabeticalOrderedGryffindor">
+            <div class="tag">
+              <div>
+                <p class="textCard"><strong>{{ student.firstName }} {{ student.lastName }}</strong><br> {{ student.description }}</p>
+                <div class="dateContainer">   
+                  <span class="material-symbols-outlined">calendar_month</span>    
+                  <p class="date">{{ student.arrivalDate }}</p>
+                </div>
+               </div>
+               <div class="center">
+                  <p class="textTag" [style.background-color]="student.house === 'Gryffindor' ? '#E9131F' : '#18A874'"> {{ student.house }}</p>
+                </div>
+            </div>
+          </div>
+        </div>
+        <div class="columns">
+          <div class="card" *ngFor="let student of studentsAlphabeticalOrderedSlytherin">
+            <div class="tag">
+              <div>
+                <p class="textCard"><strong>{{ student.firstName }} {{ student.lastName }}</strong><br> {{ student.description }}</p>
+                <div class="dateContainer">   
+                  <span class="material-symbols-outlined">calendar_month</span>    
+                  <p class="date">{{ student.arrivalDate }}</p>
+                </div>
+              </div>
+              <div class="center">
+                <p class="textTag" [style.background-color]="student.house === 'Gryffindor' ? '#E9131F' : '#18A874'"> {{ student.house }}</p>
+              </div>
+            </div>      
+          </div>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+  
+</body>
+</html>
+
