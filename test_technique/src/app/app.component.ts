@@ -99,21 +99,6 @@ export class AppComponent implements OnInit{
       return "Invalid arrival date format";
     }
   }
-
-  getAssignmentColor(assignment: Characters[]): string {
-    switch (assignment) {
-      case this.teachersT:
-        return '#E9131F';
-      case this.teachersC:
-        return '#1D79CD';
-      case this.teachersP:
-        return '#18A874';
-      case this.teachersH:
-        return '#C7B514';
-      default:
-        return 'black';
-    }
-  }
 }
 
 

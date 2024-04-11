@@ -21,8 +21,7 @@
     <div id="tableTeachers" fxFlex="30">
       <h3>Teachers</h3>
       <div class="card cardTeachers" *ngFor="let teacher of teachersOrdered">
-        <mat-card class="mat-elevation-z8"> <div class="tag">
-          
+        <div class="tag">
           <div>
             <p class="textCard"><strong>{{ teacher.firstName }} {{ teacher.lastName }} </strong><br> {{ teacher.description }}</p>
             <div class="dateContainer">   
@@ -31,9 +30,9 @@
             </div>
           </div>
           <div class="center">
-            <p class="textTag" [style.background-color]="getAssignmentColor(teachersOrdered)"> {{ teacher.assignment }}</p>
+            <p class="textTag" [class.red-background]="teacher.house === 'Gryffindor'" [class.blue-background]="teacher.house === 'Ravenclaw'" [class.green-background]="teacher.house === 'Slytherin'" [class.yellow-background]="teacher.house === 'Hufflepuff'"> {{ teacher.assignment }}</p>
           </div>
-        </div></mat-card>
+        </div>
       </div>
     </div>
     <div fxFlex="70" class="studentCards">  
@@ -41,7 +40,7 @@
         <h3>Students</h3>
         <div class="columns">
           <div class="card" *ngFor="let student of studentsAlphabeticalOrderedGryffindor">
-            <mat-card class="mat-elevation-z8"><div class="tag">
+            <div class="tag">
               <div>
                 <p class="textCard"><strong>{{ student.firstName }} {{ student.lastName }}</strong><br> {{ student.description }}</p>
                 <div class="dateContainer">   
@@ -52,23 +51,23 @@
                <div class="center">
                   <p class="textTag" [style.background-color]="student.house === 'Gryffindor' ? '#E9131F' : '#18A874'"> {{ student.house }}</p>
                 </div>
-            </div></mat-card>
+            </div>
           </div>
         </div>
         <div class="columns">
           <div class="card" *ngFor="let student of studentsAlphabeticalOrderedSlytherin">
-            <mat-card class="mat-elevation-z8"><div class="tag">
+            <div class="tag">
               <div>
                 <p class="textCard"><strong>{{ student.firstName }} {{ student.lastName }}</strong><br> {{ student.description }}</p>
                 <div class="dateContainer">   
-                  <span class="material-symbols-outlined">calendar_month</span>    
+                  <span class="material-symbols-outlined">calendar_month</span> 
                   <p class="date">{{ calculateYear(student) }}</p>
                 </div>
               </div>
               <div class="center">
                 <p class="textTag" [style.background-color]="student.house === 'Gryffindor' ? '#E9131F' : '#18A874'"> {{ student.house }}</p>
               </div>
-            </div> </mat-card>     
+            </div>    
           </div>
         </div>
         
